@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kyleluck/coffee-app.git"
+    "url": "git+https://github.com/csdaniel17/coffee-app.git"
   },
   "author": "Kyle & Carolyn",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kyleluck/coffee-app/issues"
+    "url": "https://github.com/csdaniel17/coffee-app/issues"
   },
-  "homepage": "https://github.com/kyleluck/coffee-app#readme",
+  "homepage": "https://github.com/csdaniel17/coffee-app#readme",
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
