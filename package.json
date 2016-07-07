@@ -18,6 +18,8 @@
   "homepage": "https://github.com/csdaniel17/coffee-app#readme",
   "dependencies": {
     "bcrypt": "^0.8.7",
+    "bcrypt-as-promised": "^1.1.0",
+    "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongoose": "^4.5.3",
