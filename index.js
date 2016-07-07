@@ -177,6 +177,7 @@ function authRequired(req, res, next) {
       } else {
         res.status(400).json({ "status": "fail", "message": "Session expired. Please sign in again." });
       }
+      return null;
     })
     .catch(function(err) {
       //if there was an error finding the user by authenticationToken
