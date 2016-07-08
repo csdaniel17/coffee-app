@@ -143,15 +143,11 @@ img.image2 {
   .text4 {
     padding: 0 30px 50px 30px;
   }
+}
+
+@media(max-width:768px) {
   .loginbox {
     margin: 5% auto;
     width: 80%
   }
 }
-
-/*@media(max-width:768px) {
-  .loginbox {
-    margin: 5% auto;
-    width: 80%
-  }
-}*/
