@@ -23,7 +23,7 @@ app.config(function($routeProvider){
       templateUrl: '/delivery.html'
     })
     .when('/payment', {
-      controller: 'MainController',
+      controller: 'PaymentController',
       templateUrl: '/payment.html'
     })
     .when('/thankyou', {
@@ -68,6 +68,19 @@ app.service('userAddress', function() {
   this.getData = function(){
     return this.userData;
   };
+});
+
+app.controller('PaymentController', function($http, $scope, backEnd, userAddress, $cookies, $location) {
+  var data = userAddress.getData();
+  $scope.data = data;
+  console.log(data);
+
+  var grind = $cookies.get('grind');
+  $scope.grind = grind;
+  console.log(grind);
+  var quantity = $cookies.get('quantity');
+  console.log(quantity);
+  $scope.quantity = quantity;
 });
 
 app.controller('MainController', function($http, $scope, backEnd, userAddress, $cookies, $location) {

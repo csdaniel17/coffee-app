@@ -10,9 +10,9 @@
         <p>Coffee in pounds</p>
       </div>
       <div class="col col-md-6">
-        <p>Medium</p>
+        <p>{{grind}}</p>
         <p>Weekly</p>
-        <p>0.35</p>
+        <p>{{quantity}}</p>
       </div>
     </div>
     <div class="row">
@@ -27,13 +27,13 @@
         <p>Delivery Date</p>
       </div>
       <div class="col col-md-6">
-        <p>Full Name</p>
-        <p>Address Line 1</p>
-        <p>Address Line 2</p>
-        <p>City</p>
-        <p>State</p>
-        <p>Zip Code</p>
-        <p>Delivery Date</p>
+        <p>{{data.name}}</p>
+        <p>{{data.address1}}</p>
+        <p>{{data.address2}}</p>
+        <p>{{data.city}}</p>
+        <p>{{data.state}}</p>
+        <p>{{data.zipcode}}</p>
+        <p>{{data.date}}</p>
       </div>
     </div>
     <div class="row">
@@ -44,9 +44,9 @@
         <p>Total</p>
       </div>
       <div class="col col-md-6">
-        <p>0.35 x $20.00/lb = $7.00</p>
+        <p>{{quantity}} x $20.00/lb = ${{quantity * 20}}</p>
         <p>FREE!</p>
-        <p>$7.00</p>
+        <p>${{quantity * 20}}</p>
       </div>
     </div>
   </div>
