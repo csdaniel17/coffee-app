@@ -113,6 +113,7 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
     console.log('hello world');
     backEnd.getSignUp(signUpInfo)
     .then(function(res) {
+      $location.path('/options');
       console.log(res);
     });
   };
