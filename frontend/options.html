@@ -21,23 +21,24 @@
             <td class="rightOption">$7.00</td>
           </tr>
           <tr>
-            <td class="leftOption"><label for="sel1">Grind Type:</label></td>
+            <td class="leftOption"><label>Grind Type:</label></td>
             <td>
               <div class="form-group rightOption">
-                <select class="form-control">
-                  <option>Extra Coarse</option>
+                <select class="form-control" ng-model="grind1">
+                  <option ng-repeat="grind in data">{{grind}}</option>
+                  <!-- <option>Extra Coarse</option>
                   <option>Coarse</option>
                   <option>Medium Coarse</option>
                   <option>Medium</option>
                   <option>Medium-Fine</option>
                   <option>Fine</option>
-                  <option>Extra Fine</option>
+                  <option>Extra Fine</option> -->
                 </select>
               </div>
             </td>
           </tr>
         </table>
-        <button class="btn optionsBtn" type="submit" name="button">Order</button>
+        <button ng-click="order(grind1, '.35')" class="btn optionsBtn" type="submit" name="button">Order</button>
       </div>
     </div>
 
@@ -60,23 +61,24 @@
             <td class="rightOption">$18.00</td>
           </tr>
           <tr>
-            <td class="leftOption"><label for="sel1">Grind Type:</label></td>
+            <td class="leftOption"><label>Grind Type:</label></td>
             <td>
               <div class="form-group rightOption">
-                <select class="form-control" id="sel1">
-                  <option>Extra Coarse</option>
+                <select class="form-control" ng-model="grind2">
+                  <option ng-repeat="grind in data">{{grind}}</option>
+                  <!-- <option>Extra Coarse</option>
                   <option>Coarse</option>
                   <option>Medium Coarse</option>
                   <option>Medium</option>
                   <option>Medium-Fine</option>
                   <option>Fine</option>
-                  <option>Extra Fine</option>
+                  <option>Extra Fine</option> -->
                 </select>
               </div>
             </td>
           </tr>
         </table>
-        <button class="btn optionsBtn" type="submit" name="button">Order</button>
+        <button ng-click="order(grind2, '.70')" class="btn optionsBtn" type="submit" name="button">Order</button>
       </div>
     </div>
   </div>

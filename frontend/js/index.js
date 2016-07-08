@@ -1,4 +1,4 @@
-var app = angular.module('coffee-app', ['ngRoute']);
+var app = angular.module('coffee-app', ['ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider){
   $routeProvider
@@ -60,7 +60,13 @@ app.factory('backEnd', function($http) {
   };
 });
 
-app.controller('MainController', function($http, $scope, backEnd) {
+app.controller('MainController', function($http, $scope, backEnd, $cookies, $location) {
+
+  backEnd.getOptions()
+    .then(function(data) {
+      $scope.data = data.data;
+      console.log(data);
+  });
 
   $scope.signUp = function() {
     var signUpInfo = {
@@ -68,7 +74,6 @@ app.controller('MainController', function($http, $scope, backEnd) {
       password: $scope.password
     };
     console.log('hello world');
-    // console.log(username);
     backEnd.getSignUp(signUpInfo)
     .then(function(res) {
       console.log(res);
@@ -81,14 +86,27 @@ app.controller('MainController', function($http, $scope, backEnd) {
       password: $scope.password
     };
     console.log('hello world');
-    // console.log(username);
     backEnd.getLogin(loginInfo)
     .then(function(res) {
+      $cookies.put('token', res.data.token);
+      $location.path('/options');
       console.log(res);
     });
   };
 
+  $scope.order = function(grind, quantity) {
+    $cookies.put('grind', grind);
+    $cookies.put('quantity', quantity);
+    $location.path('/delivery');
+  };
+
+
+
 console.log(backEnd);
-
-
 });
+
+// app.run(function($rootScope, $location, $cookies) {
+//   $rootScope.$on('$locationChangeStart', function(event, nextUrl, currentUrl) {
+//
+//   })
+// });

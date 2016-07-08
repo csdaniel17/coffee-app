@@ -134,6 +134,23 @@ img.image2 {
   border: solid 1px #243e39;
 }
 
+.deliverybox {
+  border: solid 3px #243e39;
+  background: #eae8e2;
+  margin: 5% 30%;
+  width: 40%;
+  padding: 2% 3%;
+  box-shadow: 0 0 10px #999;
+}
+
+.deliverybox h2 {
+  text-align: center;
+}
+
+.deliverybox hr {
+  border: solid 1px #243e39;
+}
+
 .submitBtn {
   text-align: center;
   padding: 3%;
@@ -186,6 +203,10 @@ img.image2 {
 @media(max-width:990px) {
   .text4 {
     padding: 0 30px 50px 30px;
+  }
+  .deliverybox {
+    margin: 5% auto;
+    width: 80%
   }
 }
 

@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt-as-promised');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randtoken = require('rand-token');
+var cors = require('cors');
 
 // use bluebird for promises
 var Promise = require('bluebird');
@@ -38,6 +39,9 @@ var User = mongoose.model('User', {
 
 // use body parser with JSON
 app.use(bodyParser.json());
+
+// use cors to connect front and back ends
+app.use(cors());
 
 // list all available grind options
 app.get('/options', function(req, res) {
