@@ -44,6 +44,6 @@ $ npm install cors --save
 ```
 
 
-### Live demo
+<!-- ### Live demo
 
-<!-- [Check it out](*********) -->
+[Check it out](*********) -->
