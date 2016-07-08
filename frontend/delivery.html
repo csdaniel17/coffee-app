@@ -6,41 +6,41 @@
     <hr>
     <div class="form-group">
       <label for="exampleInputName1">Full Name:</label>
-      <input type="text" class="form-control" id="exampleInputName1" placeholder="John Doe">
+      <input ng-model="name" type="text" class="form-control" id="exampleInputName1" placeholder="John Doe">
       <br>
     </div>
     <div class="form-group">
       <label for="exampleInputAddress1">Address Line 1:</label>
-      <input type="text" class="form-control" id="exampleInputAddress1" placeholder="123 Foo Bar St.">
+      <input ng-model="address1" type="text" class="form-control" id="exampleInputAddress1" placeholder="123 Foo Bar St.">
       <br>
     </div>
     <div class="form-group">
       <label for="exampleInputAddress2">Address Line 2:</label>
-      <input type="text" class="form-control" id="exampleInputAddress2" placeholder="Unit 555">
+      <input ng-model="address2" type="text" class="form-control" id="exampleInputAddress2" placeholder="Unit 555">
       <br>
     </div>
     <div class="form-group">
       <label for="exampleInputCity1">City:</label>
-      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Atlanta">
+      <input ng-model="city" type="text" class="form-control" id="exampleInputCity1" placeholder="Atlanta">
       <br>
     </div>
     <div class="form-group">
       <label for="exampleInputState1">State:</label>
-      <input type="text" class="form-control" id="exampleInputState1" placeholder="GA">
+      <input ng-model="state" type="text" class="form-control" id="exampleInputState1" placeholder="GA">
       <br>
     </div>
     <div class="form-group">
       <label for="exampleInputZipcode1">Zipcode:</label>
-      <input type="text" class="form-control" id="exampleInputZipcode1" placeholder="30000">
+      <input ng-model="zipcode" type="text" class="form-control" id="exampleInputZipcode1" placeholder="30000">
       <br>
     </div>
     <div class="form-group">
       <label for="exampleInputDate1">Delivery Date:</label>
-      <input type="date" class="form-control" id="exampleInputDate1" placeholder="7/7/2016">
+      <input ng-model="date" type="date" class="form-control" id="exampleInputDate1">
       <br>
     </div>
     <div class="submitBtn">
-      <button type="submit" class="btn">Submit</button>
+      <button ng-click="saveUserInfo()" type="submit" class="btn">Submit</button>
     </div>
   </form>
 

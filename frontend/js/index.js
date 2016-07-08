@@ -22,13 +22,13 @@ app.config(function($routeProvider){
       controller: 'MainController',
       templateUrl: '/delivery.html'
     })
-    .when('/thankyou', {
-      controller: 'MainController',
-      templateUrl: '/thankyou.html'
-    })
     .when('/payment', {
       controller: 'MainController',
       templateUrl: '/payment.html'
+    })
+    .when('/thankyou', {
+      controller: 'MainController',
+      templateUrl: '/thankyou.html'
     });
 });
 
@@ -60,13 +60,37 @@ app.factory('backEnd', function($http) {
   };
 });
 
-app.controller('MainController', function($http, $scope, backEnd, $cookies, $location) {
+app.service('userAddress', function() {
+  var userData = {};
+  this.saveData = function(data){
+    this.userData = data;
+  };
+  this.getData = function(){
+    return this.userData;
+  };
+});
+
+app.controller('MainController', function($http, $scope, backEnd, userAddress, $cookies, $location) {
 
   backEnd.getOptions()
     .then(function(data) {
       $scope.data = data.data;
       console.log(data);
   });
+
+  $scope.saveUserInfo = function() {
+    userAddress.saveData({
+      name: $scope.name,
+      address1: $scope.address1,
+      address2: $scope.address2,
+      city: $scope.city,
+      state: $scope.state,
+      zipcode: $scope.zipcode,
+      date: $scope.date
+    });
+    $location.path('/payment');
+    console.log(userAddress.getData());
+  };
 
   $scope.signUp = function() {
     var signUpInfo = {

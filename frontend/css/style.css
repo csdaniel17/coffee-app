@@ -5,6 +5,10 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
+body {
+  background: #eae8e2;
+}
+
 .logo {
   height: 100px;
   background: #243e39;
@@ -119,7 +123,7 @@ img.image2 {
 
 .loginbox {
   border: solid 3px #243e39;
-  background: #eae8e2;
+  background: #fff;
   margin: 5% 35%;
   width: 30%;
   padding: 2% 3%;
@@ -136,7 +140,7 @@ img.image2 {
 
 .deliverybox {
   border: solid 3px #243e39;
-  background: #eae8e2;
+  background: #fff;
   margin: 5% 30%;
   width: 40%;
   padding: 2% 3%;
@@ -158,8 +162,8 @@ img.image2 {
 
 .individual {
   border: solid 3px #243e39;
-  background: #eae8e2;
-  margin: 5% 1.5%;
+  background: #fff;
+  margin: 3% 1.5%;
   width: 30%;
   padding: 2% 3%;
   box-shadow: 0 0 10px #999;
@@ -198,6 +202,16 @@ img.image2 {
 }
 .optionsHeader {
   text-align: center;
+  margin-top: 3%;
+}
+
+.paymentPage {
+  width: 40%;
+  margin: 5% auto;
+  padding: 2% 0 2% 6%;
+  border: solid 3px #243e39;
+  box-shadow: 0 0 10px #999;
+  background: #fff;
 }
 
 @media(max-width:990px) {
