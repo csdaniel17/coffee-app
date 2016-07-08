@@ -1,33 +1,22 @@
 <div class="container-fluid">
-  <!-- <div class="loginbox">
-      <h2>Login</h2><br>
-      Username:<br>
-      <input type="text" name="username" placeholder="username"><br>
-      Password:<br>
-      <input type="password" name="password" placeholder="password"><br>
-      <button class="btn btn-default started">Login</button>
-  </div> -->
 
-
-
-<form class="loginbox">
-  <h2>Login</h2>
-  <br>
-  <hr>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Username:</label>
-    <input type="text" class="form-control" placeholder="Username">
+  <form class="loginbox">
+    <h2>Login</h2>
     <br>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password:</label>
-    <input type="password" class="form-control" placeholder="Password">
-    <br>
-  </div>
-  <div class="submitBtn">
-    <button type="submit" class="btn">Submit</button>
-  </div>
-</form>
-
+    <hr>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username:</label>
+      <input ng-model="username" type="text" class="form-control" id="exampleInputEmail1" placeholder="Username">
+      <br>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password:</label>
+      <input ng-model="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <br>
+    </div>
+    <div class="submitBtn">
+      <button type="submit" class="btn" ng-click="login()">Submit</button>
+    </div>
+  </form>
 
 </div>

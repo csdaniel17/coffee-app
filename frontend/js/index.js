@@ -37,16 +37,18 @@ var API = 'http://localhost:3000';
 // Ajax service calls - using promises
 app.factory('backEnd', function($http) {
   return {
-    getSignup: function() {
+    getSignUp: function(data) {
       return $http({
         method: 'POST',
-        url: API + 'signup'
+        url: API + '/signup',
+        data: data
       });
     },
-    getLogin: function() {
+    getLogin: function(data) {
       return $http({
         method: 'POST',
-        url: API + '/login'
+        url: API + '/login',
+        data: data
       });
     },
     getOptions: function() {
@@ -58,6 +60,35 @@ app.factory('backEnd', function($http) {
   };
 });
 
-app.controller('MainController', function($http, $scope) {
+app.controller('MainController', function($http, $scope, backEnd) {
+
+  $scope.signUp = function() {
+    var signUpInfo = {
+      username: $scope.username,
+      password: $scope.password
+    };
+    console.log('hello world');
+    // console.log(username);
+    backEnd.getSignUp(signUpInfo)
+    .then(function(res) {
+      console.log(res);
+    });
+  };
+
+  $scope.login = function() {
+    var loginInfo = {
+      username: $scope.username,
+      password: $scope.password
+    };
+    console.log('hello world');
+    // console.log(username);
+    backEnd.getLogin(loginInfo)
+    .then(function(res) {
+      console.log(res);
+    });
+  };
+
+console.log(backEnd);
+
 
 });

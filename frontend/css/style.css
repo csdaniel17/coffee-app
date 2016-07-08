@@ -139,6 +139,50 @@ img.image2 {
   padding: 3%;
 }
 
+.individual {
+  border: solid 3px #243e39;
+  background: #eae8e2;
+  margin: 5% 1.5%;
+  width: 30%;
+  padding: 2% 3%;
+  box-shadow: 0 0 10px #999;
+  text-align: center;
+}
+
+.individual img {
+  width: 90%;
+}
+
+.individual table {
+  margin: auto;
+  padding: 4% 1%;
+}
+
+.leftOption  {
+  text-align: right;
+  padding: 5px 15px;
+}
+
+.rightOption  {
+  text-align: left;
+  padding: 5px 15px;
+}
+
+.optionsBox {
+  display: flex;
+  margin-left: 40%;
+}
+.optionsBtn {
+  text-align: center;
+  background-color: #243e39;
+  color: #eae8e2;
+  font-size: 14px;
+  border-radius: 5px;
+}
+.optionsHeader {
+  text-align: center;
+}
+
 @media(max-width:990px) {
   .text4 {
     padding: 0 30px 50px 30px;
