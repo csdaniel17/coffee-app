@@ -123,7 +123,7 @@ img.image2 {
   margin: 5% 35%;
   width: 30%;
   padding: 2% 3%;
-  box-shadow: 4px 4px 4px #ccc;
+  box-shadow: 0 0 10px #999;
 }
 
 .loginbox h2 {
