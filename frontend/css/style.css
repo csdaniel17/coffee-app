@@ -214,6 +214,23 @@ img.image2 {
   background: #fff;
 }
 
+.thankyou {
+  border: solid 3px #243e39;
+  background: #fff;
+  margin: 5% 30%;
+  width: 40%;
+  padding: 2% 3%;
+  box-shadow: 0 0 10px #999;
+}
+
+.thankyou h2 {
+  text-align: center;
+}
+
+.thankyou hr {
+  border: solid 1px #243e39;
+}
+
 @media(max-width:990px) {
   .text4 {
     padding: 0 30px 50px 30px;
@@ -222,10 +239,15 @@ img.image2 {
     margin: 5% auto;
     width: 80%
   }
+
 }
 
 @media(max-width:768px) {
   .loginbox {
+    margin: 5% auto;
+    width: 80%
+  }
+  .thankyou {
     margin: 5% auto;
     width: 80%
   }
