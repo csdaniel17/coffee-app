@@ -20,7 +20,7 @@
       <div class="col col-xs-6">
         <p>Full Name</p>
         <p>Address Line 1</p>
-        <p>Address Line 2</p>
+        <p ng-show="data.address2">Address Line 2</p>
         <p>City</p>
         <p>State</p>
         <p>Zip Code</p>
@@ -29,11 +29,11 @@
       <div class="col col-xs-6">
         <p>{{data.name}}</p>
         <p>{{data.address1}}</p>
-        <p>{{data.address2}}</p>
+        <p ng-show="data.address2">{{data.address2}}</p>
         <p>{{data.city}}</p>
         <p>{{data.state}}</p>
         <p>{{data.zipcode}}</p>
-        <p>{{data.date}}</p>
+        <p>{{data.date | date: "MM-dd-yyyy"}}</p>
       </div>
     </div>
     <div class="row">

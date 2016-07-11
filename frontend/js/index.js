@@ -84,6 +84,9 @@ app.run(function($rootScope, $location, $cookies) {
 app.service('userAddress', function() {
   var userData = {};
   this.saveData = function(data){
+    // if (!data.address2) {
+    //   data.address2 = 'None';
+    // }
     this.userData = data;
   };
   this.getData = function(){
