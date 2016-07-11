@@ -75,6 +75,10 @@ app.run(function($rootScope, $location, $cookies) {
       $rootScope.userButton = false;
     }
   });
+  $rootScope.logout = function() {
+    $cookies.remove('token');
+    $location.path('/');
+  };
 });
 
 app.service('userAddress', function() {
@@ -161,12 +165,4 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
     $location.path('/delivery');
   };
 
-  $scope.logout = function() {
-    $cookies.remove('token');
-    $location.path('/');
-  };
-
-
-
-console.log(backEnd);
 });

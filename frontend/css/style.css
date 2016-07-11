@@ -255,6 +255,11 @@ img.image2 {
     width: 50%;
     margin: 5% auto;
   }
+  .paymentPage {
+    width: 70%;
+    margin: 5% auto;
+    padding: 2% 0 2% 6%;
+  }
 }
 
 @media(max-width:768px) {
@@ -269,5 +274,10 @@ img.image2 {
   .individual {
     width: 80%;
     margin: 5% auto;
+  }
+  .paymentPage {
+    width: 80%;
+    /*margin: 5% auto;
+    padding: 2% 0 2% 6%;*/
   }
 }
