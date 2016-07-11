@@ -133,6 +133,36 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
     backEnd.getOrders(userInfo);
     $location.path('/thankyou');
   };
+
+  $scope.pay = function() {
+    var amount = ($cookies.get('quantity') * 20 * 100);
+    var handler = StripeCheckout.configure({
+      key: 'pk_test_Wz4GRV8wyrGtQq9kkVWRar6d',
+      locale: 'auto',
+      token: function(token) {
+        var tokenId = token.id;
+        $http({
+          url: '/orders',
+          method: 'POST',
+          data: {
+            amount: amount,
+            token: tokenId
+          }
+        })
+        .then(function(data) {
+          console.log('charge: ', data);
+          alert('You were charged $' + (data.charge.amount / 100));
+        });
+      }
+    });
+    handler.open({
+      name: 'DC Roasters',
+      description: 'Coffee Masters',
+      amount: amount
+    });
+  };
+
+
 });
 
 app.controller('MainController', function($http, $scope, backEnd, userAddress, $cookies, $location) {

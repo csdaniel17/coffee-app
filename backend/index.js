@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randtoken = require('rand-token');
 var cors = require('cors');
+var stripe = require('stripe')('sk_test_HpALrLgbTmPqF3zzGhmUJ3qB');
 
 // use bluebird for promises
 var Promise = require('bluebird');
@@ -136,12 +137,31 @@ app.post('/login', function(req, res) {
 
 // allows users to order coffee, charges purchases with stripe
 app.post('/orders', authRequired, function(req, res) {
+  // pay with card - stripe
+  var amount = req.body.amount;
+  var token = req.body.token;
+  console.log('order submitted' + amount + token);
+  stripe.charges.create({
+    amount: amount,
+    curreny: 'usd',
+    source: token
+  }, function(err, charge) {
+    if (err) {
+      res.json({
+        "status": "fail",
+        "message": err.message
+      });
+      return;
+    }
+    res.json({ "status": "ok", "charge": "charge" });
+  });
   // user is authenticated
   // push the order from the request to orders property on the user object
   var user = req.user;
   user.orders.push(req.body.order);
   console.log('line 143: ', req.body);
-  //save the user to the database
+
+  // save the user to the database
   user.save()
     .then(function() {
       res.status(200).json({ "status": "ok" });
@@ -167,6 +187,23 @@ app.get('/orders', authRequired, function(req, res) {
   });
   res.status(200).json({ "status": "ok", "message": orders });
 });
+
+// // use stripe for payments
+// app.post('/payment', function(req, res) {
+//   var stripeToken = req.body.stripeToken;
+//
+//   var charge = stripe.charges.create({
+//     amount: 1000,
+//     currency: 'usd',
+//     source: stripeToken,
+//     description: 'Example charge',
+//   }, function(err, charge) {
+//     if (err && err.type === 'StripeCardError') {
+//       // card has been declined
+//       console.log('card declined');
+//     }
+//   });
+// });
 
 // function to handle authentication
 function authRequired(req, res, next) {

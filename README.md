@@ -1,7 +1,7 @@
 # Coffee Shop App
 
 ## Overview
-* The DC Roaster's eCommerce site is an online coffee store built using the MEAN stack. Users can register an account, login, and order delicious coffee to be delivered weekly. Each user's order info will be save in our MongoDB database. 
+* The DC Roaster's eCommerce site is an online coffee store built using the MEAN stack. Users can register an account, login, and order delicious coffee to be delivered weekly. Each user's order info will be save in our MongoDB database.
 
 
 <!-- ![Coffee Shop](img/***********.png) -->
@@ -42,6 +42,7 @@ $ npm install bluebird --save
 $ npm install rand-token --save
 $ npm install body-parser --save
 $ npm install cors --save
+$ npm install stripe --save
 ```
 
 
