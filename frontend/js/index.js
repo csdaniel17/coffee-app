@@ -112,6 +112,7 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
 
   $scope.submitOrder = function() {
     var data = userAddress.getData();
+    console.log('115: data is: ', data);
     var userInfo = {
       token: $cookies.get('token'),
       order: {
@@ -151,7 +152,9 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
         })
         .then(function(data) {
           console.log('charge: ', data);
-          alert('You were charged $' + (data.data.charge.amount / 100));
+          // alert('You were charged $' + (data.data.charge.amount / 100));
+          $scope.submitOrder(data);
+          $location.path('/thankyou');
         });
       }
     });
