@@ -231,6 +231,11 @@ img.image2 {
   border: solid 1px #243e39;
 }
 
+.thankyouBtn {
+  text-align: center;
+  margin: auto;
+}
+
 @media(max-width:990px) {
   .text4 {
     padding: 0 30px 50px 30px;

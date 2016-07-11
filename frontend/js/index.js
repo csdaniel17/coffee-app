@@ -60,6 +60,18 @@ app.factory('backEnd', function($http) {
   };
 });
 
+app.run(function($rootScope, $location, $cookies) {
+  $rootScope.$on('$locationChangeStart', function(event, nextUrl, currentUrl) {
+    var token = $cookies.get('token');
+    nextUrl = nextUrl.split('/');
+    nextUrl = nextUrl[nextUrl.length -1];
+    if (!token && (nextUrl === 'options' || nextUrl === 'delivery' || nextUrl === 'payment')) {
+      $cookies.put('urlRedirect', nextUrl);
+      $location.path('/login');
+    }
+  });
+});
+
 app.service('userAddress', function() {
   var userData = {};
   this.saveData = function(data){
@@ -127,7 +139,13 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
     backEnd.getLogin(loginInfo)
     .then(function(res) {
       $cookies.put('token', res.data.token);
-      $location.path('/options');
+      var nextUrl = $cookies.get('urlRedirect');
+      if (!nextUrl) {
+        $location.path('/options');
+      } else {
+        $location.path('/' + nextUrl);
+        $cookies.remove('urlRedirect');
+      }
       console.log(res);
     });
   };
@@ -142,9 +160,3 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
 
 console.log(backEnd);
 });
-
-// app.run(function($rootScope, $location, $cookies) {
-//   $rootScope.$on('$locationChangeStart', function(event, nextUrl, currentUrl) {
-//
-//   })
-// });
