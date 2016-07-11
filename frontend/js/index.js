@@ -27,7 +27,7 @@ app.config(function($routeProvider){
       templateUrl: '/payment.html'
     })
     .when('/thankyou', {
-      controller: 'MainController',
+      controller: 'PaymentController',
       templateUrl: '/thankyou.html'
     });
 });

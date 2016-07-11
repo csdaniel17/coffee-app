@@ -4,6 +4,7 @@
   "description": "Coffee App with MEAN stack",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,5 +27,8 @@
     "mongoose": "^4.5.3",
     "rand-token": "^0.2.1",
     "stripe": "^4.7.0"
+  },
+  "engines": {
+    "node": "==4.4.5"
   }
 }
