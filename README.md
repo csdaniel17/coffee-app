@@ -47,3 +47,8 @@ $ npm install cors --save
 <!-- ### Live demo
 
 [Check it out](*********) -->
+
+
+### Updates to make
+* Fix required fields on order form to prevent empty inputs
+* Add payment using Stripe

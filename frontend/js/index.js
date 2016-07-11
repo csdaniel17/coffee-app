@@ -187,6 +187,9 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
         $cookies.remove('urlRedirect');
       }
       console.log(res);
+    })
+    .catch(function(err) {
+      $scope.errMessage = true;
     });
   };
 
@@ -195,7 +198,5 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
     $cookies.put('quantity', quantity);
     $location.path('/delivery');
   };
-
-
 
 });
