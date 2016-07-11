@@ -26,6 +26,12 @@ body {
   color: #243e39;
 }
 
+.newUserBtn {
+  background-color: #243e39;
+  color: #fff;
+
+}
+
 .footer {
   background: #243e39;
   text-align: center;
@@ -167,6 +173,10 @@ img.image2 {
   padding: 3%;
 }
 
+.submitBtn button {
+  margin: 0 4%;
+}
+
 .individual {
   border: solid 3px #243e39;
   background: #fff;
@@ -238,14 +248,17 @@ img.image2 {
   border: solid 1px #243e39;
 }
 
-.thankyouBtn {
-  text-align: center;
-  margin: auto;
+.submitOrderBtn {
+  color: #243e39;
 }
 
 @media(max-width:990px) {
   .text4 {
     padding: 0 30px 50px 30px;
+  }
+  .loginbox {
+    margin: 5% auto;
+    width: 60%
   }
   .deliverybox {
     margin: 5% auto;
@@ -277,7 +290,5 @@ img.image2 {
   }
   .paymentPage {
     width: 80%;
-    /*margin: 5% auto;
-    padding: 2% 0 2% 6%;*/
   }
 }

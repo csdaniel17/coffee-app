@@ -1,13 +1,14 @@
 # Coffee Shop App
 
 ## Overview
-* An online coffee store using the MEAN stack
+* The DC Roaster's eCommerce site is an online coffee store built using the MEAN stack. Users can register an account, login, and order delicious coffee to be delivered weekly. Each user's order info will be save in our MongoDB database. 
+
 
 <!-- ![Coffee Shop](img/***********.png) -->
 
 
 
-### Technologies, frameworks, & programming Languages used
+### Technologies, frameworks, & programming languages used
 * HTML5 & CSS3
 * Bootstrap
 * JavaScript
