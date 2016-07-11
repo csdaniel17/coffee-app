@@ -137,30 +137,11 @@ app.post('/login', function(req, res) {
 
 // allows users to order coffee, charges purchases with stripe
 app.post('/orders', authRequired, function(req, res) {
-  // pay with card - stripe
-  var amount = req.body.amount;
-  var token = req.body.token;
-  console.log('order submitted' + amount + token);
-  stripe.charges.create({
-    amount: amount,
-    curreny: 'usd',
-    source: token
-  }, function(err, charge) {
-    if (err) {
-      res.json({
-        "status": "fail",
-        "message": err.message
-      });
-      return;
-    }
-    res.json({ "status": "ok", "charge": "charge" });
-  });
   // user is authenticated
   // push the order from the request to orders property on the user object
   var user = req.user;
   user.orders.push(req.body.order);
   console.log('line 143: ', req.body);
-
   // save the user to the database
   user.save()
     .then(function() {
@@ -174,6 +155,30 @@ app.post('/orders', authRequired, function(req, res) {
       }
       res.status(400).json({ "status": "fail", "message": errorMessage });
     });
+});
+
+app.post('/payment', function(req, res) {
+  // pay with card - stripe
+  var amount = req.body.amount;
+  var token = req.body.token;
+  // var token = req.query.token ? req.query.token : req.body.token;
+  console.log('order submitted' + amount + token);
+  var charge = stripe.charges.create({
+    amount: amount,
+    currency: 'usd',
+    source: token
+  }, function(err, charge) {
+    if (err) {
+      res.json({
+        "status": "fail",
+        "message": err.message
+      });
+      return;
+    }
+    res.json({ "status": "ok", "charge": charge });
+  });
+
+
 });
 
 // returns all orders the user has previously submitted

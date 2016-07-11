@@ -141,8 +141,8 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
       locale: 'auto',
       token: function(token) {
         var tokenId = token.id;
-        $http({
-          url: '/orders',
+        return $http({
+          url: API + '/payment',
           method: 'POST',
           data: {
             amount: amount,
@@ -151,7 +151,7 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
         })
         .then(function(data) {
           console.log('charge: ', data);
-          alert('You were charged $' + (data.charge.amount / 100));
+          alert('You were charged $' + (data.data.charge.amount / 100));
         });
       }
     });
