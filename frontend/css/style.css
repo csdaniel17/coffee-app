@@ -19,6 +19,13 @@ body {
   margin: 10px 0;
 }
 
+.userBtns {
+  /*text-align: right;*/
+  float: right;
+  margin: 2% 1%;
+  color: #243e39;
+}
+
 .footer {
   background: #243e39;
   text-align: center;
@@ -244,7 +251,10 @@ img.image2 {
     margin: 5% auto;
     width: 80%
   }
-
+  .individual {
+    width: 50%;
+    margin: 5% auto;
+  }
 }
 
 @media(max-width:768px) {
@@ -255,5 +265,9 @@ img.image2 {
   .thankyou {
     margin: 5% auto;
     width: 80%
+  }
+  .individual {
+    width: 80%;
+    margin: 5% auto;
   }
 }

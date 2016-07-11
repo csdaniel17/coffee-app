@@ -69,6 +69,11 @@ app.run(function($rootScope, $location, $cookies) {
       $cookies.put('urlRedirect', nextUrl);
       $location.path('/login');
     }
+    if (!token) {
+      $rootScope.userButton = true;
+    } else {
+      $rootScope.userButton = false;
+    }
   });
 });
 
@@ -154,6 +159,11 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
     $cookies.put('grind', grind);
     $cookies.put('quantity', quantity);
     $location.path('/delivery');
+  };
+
+  $scope.logout = function() {
+    $cookies.remove('token');
+    $location.path('/');
   };
 
 
