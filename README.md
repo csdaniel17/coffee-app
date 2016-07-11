@@ -53,4 +53,3 @@ $ npm install stripe --save
 
 ### Updates to make
 * Fix required fields on order form to prevent empty inputs
-* Add payment using Stripe
