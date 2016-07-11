@@ -84,6 +84,7 @@ app.run(function($rootScope, $location, $cookies) {
   });
   $rootScope.logout = function() {
     $cookies.remove('token');
+    $rootScope.userButton = true;
     $location.path('/');
   };
 });
@@ -160,7 +161,7 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
     });
     handler.open({
       name: 'DC Roasters',
-      description: 'Coffee Masters',
+      description: 'Test card #: 4242 4242 4242 4242',
       amount: amount
     });
   };
