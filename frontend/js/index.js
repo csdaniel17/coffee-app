@@ -56,6 +56,13 @@ app.factory('backEnd', function($http) {
         method: 'GET',
         url: API + '/options'
       });
+    },
+    getOrders: function(data) {
+      return $http({
+        method: 'POST',
+        url: API + '/orders',
+        data: data
+      });
     }
   };
 });
@@ -84,9 +91,6 @@ app.run(function($rootScope, $location, $cookies) {
 app.service('userAddress', function() {
   var userData = {};
   this.saveData = function(data){
-    // if (!data.address2) {
-    //   data.address2 = 'None';
-    // }
     this.userData = data;
   };
   this.getData = function(){
@@ -105,6 +109,30 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
   var quantity = $cookies.get('quantity');
   console.log(quantity);
   $scope.quantity = quantity;
+
+  $scope.submitOrder = function() {
+    var data = userAddress.getData();
+    var userInfo = {
+      token: $cookies.get('token'),
+      order: {
+        "options": {
+          "grind": $cookies.get('grind'),
+          "quantity": $cookies.get('quantity')
+        },
+        "address": {
+          "name": data.name,
+          "address": data.address1,
+          "address2": data.address2,
+          "city": data.city,
+          "state": data.state,
+          "zipCode": data.zipcode,
+          "deliveryDate": data.date
+        }
+      }
+    };
+    backEnd.getOrders(userInfo);
+    $location.path('/thankyou');
+  };
 });
 
 app.controller('MainController', function($http, $scope, backEnd, userAddress, $cookies, $location) {
@@ -167,5 +195,7 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
     $cookies.put('quantity', quantity);
     $location.path('/delivery');
   };
+
+
 
 });

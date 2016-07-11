@@ -140,6 +140,7 @@ app.post('/orders', authRequired, function(req, res) {
   // push the order from the request to orders property on the user object
   var user = req.user;
   user.orders.push(req.body.order);
+  console.log('line 143: ', req.body);
   //save the user to the database
   user.save()
     .then(function() {
