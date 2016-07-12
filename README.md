@@ -51,5 +51,4 @@ $ npm install stripe --save
 [Check it out](*********) -->
 
 
-### Updates to make
-* Fix required fields on order form to prevent empty inputs
+<!-- ### Updates to make -->
