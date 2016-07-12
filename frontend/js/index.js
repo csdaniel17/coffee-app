@@ -68,10 +68,11 @@ app.factory('backEnd', function($http) {
 });
 
 app.run(function($rootScope, $location, $cookies) {
+
   $rootScope.$on('$locationChangeStart', function(event, nextUrl, currentUrl) {
     var token = $cookies.get('token');
     nextUrl = nextUrl.split('/');
-    nextUrl = nextUrl[nextUrl.length -1];
+    nextUrl = nextUrl[nextUrl.length - 1];
     if (!token && (nextUrl === 'options' || nextUrl === 'delivery' || nextUrl === 'payment')) {
       $cookies.put('urlRedirect', nextUrl);
       $location.path('/login');
@@ -82,6 +83,7 @@ app.run(function($rootScope, $location, $cookies) {
       $rootScope.userButton = false;
     }
   });
+
   $rootScope.logout = function() {
     $cookies.remove('token');
     $rootScope.userButton = true;
@@ -169,7 +171,7 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
 
 });
 
-app.controller('MainController', function($http, $scope, backEnd, userAddress, $cookies, $location) {
+app.controller('MainController', function($rootScope, $scope, $http, backEnd, userAddress, $cookies, $location) {
 
   backEnd.getOptions()
     .then(function(data) {
@@ -226,6 +228,8 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
       console.log(res);
     })
     .catch(function(err) {
+      // $rootScope.flashMessage = err.message;
+      // console.log(err.message);
       $scope.errMessage = true;
     });
   };
