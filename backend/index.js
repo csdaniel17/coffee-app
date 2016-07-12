@@ -157,8 +157,8 @@ app.post('/orders', authRequired, function(req, res) {
     });
 });
 
+// pay with card - stripe
 app.post('/payment', function(req, res) {
-  // pay with card - stripe
   var amount = req.body.amount;
   var token = req.body.token;
   // var token = req.query.token ? req.query.token : req.body.token;
@@ -177,8 +177,6 @@ app.post('/payment', function(req, res) {
     }
     res.json({ "status": "ok", "charge": charge });
   });
-
-
 });
 
 // returns all orders the user has previously submitted
@@ -192,23 +190,6 @@ app.get('/orders', authRequired, function(req, res) {
   });
   res.status(200).json({ "status": "ok", "message": orders });
 });
-
-// // use stripe for payments
-// app.post('/payment', function(req, res) {
-//   var stripeToken = req.body.stripeToken;
-//
-//   var charge = stripe.charges.create({
-//     amount: 1000,
-//     currency: 'usd',
-//     source: stripeToken,
-//     description: 'Example charge',
-//   }, function(err, charge) {
-//     if (err && err.type === 'StripeCardError') {
-//       // card has been declined
-//       console.log('card declined');
-//     }
-//   });
-// });
 
 // function to handle authentication
 function authRequired(req, res, next) {

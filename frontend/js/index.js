@@ -68,7 +68,6 @@ app.factory('backEnd', function($http) {
 });
 
 app.run(function($rootScope, $location, $cookies) {
-
   $rootScope.$on('$locationChangeStart', function(event, nextUrl, currentUrl) {
     var token = $cookies.get('token');
     nextUrl = nextUrl.split('/');
@@ -104,24 +103,19 @@ app.service('userAddress', function() {
 app.controller('PaymentController', function($http, $scope, backEnd, userAddress, $cookies, $location) {
   var data = userAddress.getData();
   $scope.data = data;
-  console.log(data);
-
   var grind = $cookies.get('grind');
   $scope.grind = grind;
-  console.log(grind);
   var quantity = $cookies.get('quantity');
-  console.log(quantity);
   $scope.quantity = quantity;
 
   $scope.submitOrder = function() {
     var data = userAddress.getData();
-    console.log('115: data is: ', data);
     var userInfo = {
       token: $cookies.get('token'),
       order: {
         "options": {
-          "grind": $cookies.get('grind'),
-          "quantity": $cookies.get('quantity')
+          "grind": grind,
+          "quantity": quantity
         },
         "address": {
           "name": data.name,
@@ -154,8 +148,6 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
           }
         })
         .then(function(data) {
-          console.log('charge: ', data);
-          // alert('You were charged $' + (data.data.charge.amount / 100));
           $scope.submitOrder(data);
           $location.path('/thankyou');
         });
@@ -167,16 +159,12 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
       amount: amount
     });
   };
-
-
 });
 
 app.controller('MainController', function($rootScope, $scope, $http, backEnd, userAddress, $cookies, $location) {
-
   backEnd.getOptions()
     .then(function(data) {
       $scope.data = data.data;
-      console.log(data);
   });
 
   $scope.saveUserInfo = function() {
@@ -190,7 +178,6 @@ app.controller('MainController', function($rootScope, $scope, $http, backEnd, us
       date: $scope.date
     });
     $location.path('/payment');
-    console.log(userAddress.getData());
   };
 
   $scope.signUp = function() {
@@ -202,7 +189,6 @@ app.controller('MainController', function($rootScope, $scope, $http, backEnd, us
     backEnd.getSignUp(signUpInfo)
     .then(function(res) {
       $location.path('/options');
-      console.log(res);
     })
     .catch(function(err) {
       $scope.errMessage = true;
@@ -214,7 +200,6 @@ app.controller('MainController', function($rootScope, $scope, $http, backEnd, us
       username: $scope.username,
       password: $scope.password
     };
-    console.log('hello world');
     backEnd.getLogin(loginInfo)
     .then(function(res) {
       $cookies.put('token', res.data.token);
@@ -225,11 +210,8 @@ app.controller('MainController', function($rootScope, $scope, $http, backEnd, us
         $location.path('/' + nextUrl);
         $cookies.remove('urlRedirect');
       }
-      console.log(res);
     })
     .catch(function(err) {
-      // $rootScope.flashMessage = err.message;
-      // console.log(err.message);
       $scope.errMessage = true;
     });
   };
@@ -239,5 +221,4 @@ app.controller('MainController', function($rootScope, $scope, $http, backEnd, us
     $cookies.put('quantity', quantity);
     $location.path('/delivery');
   };
-
 });
