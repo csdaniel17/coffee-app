@@ -100,7 +100,19 @@ app.service('userAddress', function() {
   };
 });
 
-app.controller('PaymentController', function($http, $scope, backEnd, userAddress, $cookies, $location) {
+app.factory('flash', function($rootScope, $timeout) {
+  function setMessage(message) {
+    $rootScope.flashMessage = message;
+    $timeout(function() {
+      $rootScope.flashMessage = null;
+    }, 4000);
+  }
+  return {
+    setMessage: setMessage
+  };
+});
+
+app.controller('PaymentController', function($http, $scope, backEnd, userAddress, $cookies, $location, flash) {
   var data = userAddress.getData();
   $scope.data = data;
   var grind = $cookies.get('grind');
@@ -149,6 +161,7 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
         })
         .then(function(data) {
           $scope.submitOrder(data);
+          flash.setMessage('Thank you, your card has been charged: $' + (data.data.charge.amount / 100) + '!');
           $location.path('/thankyou');
         });
       }
@@ -161,7 +174,7 @@ app.controller('PaymentController', function($http, $scope, backEnd, userAddress
   };
 });
 
-app.controller('MainController', function($rootScope, $scope, $http, backEnd, userAddress, $cookies, $location) {
+app.controller('MainController', function($scope, $http, backEnd, userAddress, $cookies, $location, flash) {
   backEnd.getOptions()
     .then(function(data) {
       $scope.data = data.data;
@@ -191,7 +204,9 @@ app.controller('MainController', function($rootScope, $scope, $http, backEnd, us
       $location.path('/options');
     })
     .catch(function(err) {
-      $scope.errMessage = true;
+      flash.setMessage(err.data.message);
+      // $rootScope.flashMessage = err.data.message;
+      // $scope.errMessage = true;
     });
   };
 
@@ -203,6 +218,8 @@ app.controller('MainController', function($rootScope, $scope, $http, backEnd, us
     backEnd.getLogin(loginInfo)
     .then(function(res) {
       $cookies.put('token', res.data.token);
+      console.log(res);
+      flash.setMessage('Welcome, ' + loginInfo.username + '!');
       var nextUrl = $cookies.get('urlRedirect');
       if (!nextUrl) {
         $location.path('/options');
@@ -212,7 +229,8 @@ app.controller('MainController', function($rootScope, $scope, $http, backEnd, us
       }
     })
     .catch(function(err) {
-      $scope.errMessage = true;
+      flash.setMessage(err.data.message);
+      // $scope.errMessage = true;
     });
   };
 

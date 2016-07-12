@@ -102,7 +102,7 @@ app.post('/login', function(req, res) {
     .then(function(user) {
       // if user isn't found
       if (!user) {
-        throw new Error("User not found");
+        throw new Error("User not found!");
       } else {
         // compared submitted password with encrypted password in database
         return [user, bcrypt.compare(password, user.password)];
@@ -119,7 +119,7 @@ app.post('/login', function(req, res) {
         return [token, user.save()];
       } else {
         // incorrect password - throw error
-        throw new Error("Incorrect password!");
+        throw new Error("Invalid password!");
       }
     })
     .spread(function(token) {
@@ -127,7 +127,7 @@ app.post('/login', function(req, res) {
     })
     .catch(bcrypt.MISMATCH_ERROR, function() {
       console.log("in MISMATCH_ERROR catch...");
-      res.status(400).json({ "status": "fail", "message": "Invalid password" });
+      res.status(400).json({ "status": "fail", "message": "Invalid password!" });
     })
     .catch(function(err) {
       console.error(err.stack);

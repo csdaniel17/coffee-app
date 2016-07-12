@@ -19,8 +19,11 @@ body {
   margin: 10px 0;
 }
 
+.alert-warning {
+  color: red;
+}
+
 .userBtns {
-  /*text-align: right;*/
   float: right;
   margin: 2% 1%;
   color: #243e39;
