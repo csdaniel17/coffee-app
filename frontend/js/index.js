@@ -201,6 +201,9 @@ app.controller('MainController', function($http, $scope, backEnd, userAddress, $
     .then(function(res) {
       $location.path('/options');
       console.log(res);
+    })
+    .catch(function(err) {
+      $scope.errMessage = true;
     });
   };
 
