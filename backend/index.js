@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var randtoken = require('rand-token');
 var cors = require('cors');
 var stripe = require('stripe')('sk_test_HpALrLgbTmPqF3zzGhmUJ3qB');
+var credentials = require('./credentials.json');
 
 // use bluebird for promises
 var Promise = require('bluebird');
@@ -14,7 +15,7 @@ mongoose.Promise = Promise; // use bluebird with mongoose
 var app = express();
 
 // connect to the database
-mongoose.connect('mongodb://localhost/coffee');
+mongoose.connect('mongodb://' + credentials.username + ':' + credentials.password + "@ds011903.mlab.com:11903/coffeeapp");
 
 // mongodb model for users
 var User = mongoose.model('User', {
