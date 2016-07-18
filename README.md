@@ -36,8 +36,7 @@
 ```node
 $ npm install express --save
 $ npm install mongoose --save
-$ npm install bcrypt --save
-$ npm install bcrypt-as-promised --save
+$ npm install my-bcrypt --save
 $ npm install bluebird --save
 $ npm install rand-token --save
 $ npm install body-parser --save
