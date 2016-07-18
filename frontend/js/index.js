@@ -32,7 +32,7 @@ app.config(function($routeProvider){
     });
 });
 
-var API = 'http://localhost:3000';
+var API = 'https://coffee-app-kiblphkboi.now.sh';
 
 // Ajax service calls - using promises
 app.factory('backEnd', function($http) {

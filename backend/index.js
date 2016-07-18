@@ -1,6 +1,5 @@
 var express = require('express');
 // var bcrypt = require('bcrypt');
-var bcrypt = require('my-bcrypt');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randtoken = require('rand-token');
@@ -10,7 +9,8 @@ var stripe = require('stripe')('sk_test_HpALrLgbTmPqF3zzGhmUJ3qB');
 // use bluebird for promises
 var Promise = require('bluebird');
 mongoose.Promise = Promise; // use bluebird with mongoose
-Promise.promisifyAll(bcrypt); // to support promise based style
+var bcrypt = Promise.promisifyAll(require('my-bcrypt')); // to support promise based style
+
 
 var app = express();
 
@@ -64,7 +64,7 @@ app.post('/signup', function(req, res) {
   var username = req.body.username;
   var password = req.body.password;
   // generate encrypted password
-  bcrypt.hash(password, 10)
+  bcrypt.hashAsync(password, 10)
     .then(function(encryptedPassword) {
       return [encryptedPassword, User.findOne({ _id: username })];
     })
@@ -107,7 +107,7 @@ app.post('/login', function(req, res) {
         throw new Error("User not found!");
       } else {
         // compared submitted password with encrypted password in database
-        return [user, bcrypt.compare(password, user.password)];
+        return [user, bcrypt.compareAsync(password, user.password)];
       }
     })
     .spread(function(user, matched) {
@@ -127,12 +127,12 @@ app.post('/login', function(req, res) {
     .spread(function(token) {
       res.status(200).json({ "status": "ok", "token": token });
     })
-    .catch(bcrypt.MISMATCH_ERROR, function() {
-      console.log("in MISMATCH_ERROR catch...");
-      res.status(400).json({ "status": "fail", "message": "Invalid password!" });
-    })
+    // .catch(bcrypt.MISMATCH_ERROR, function() {
+    //   console.log("in MISMATCH_ERROR catch...");
+    //   res.status(400).json({ "status": "fail", "message": "Invalid password!" });
+    // })
     .catch(function(err) {
-      console.error(err.stack);
+      // console.error(err.stack);
       res.status(400).json({ "status": "fail", "message": err.message });
     });
 });
