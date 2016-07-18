@@ -46,9 +46,9 @@ $ npm install stripe --save
 ```
 
 
-<!-- ### Live demo
+### Live demo
 
-[Check it out](*********) -->
+[Check it out](http://danielcoffeeapp.surge.sh/)
 
 
 <!-- ### Updates to make -->
