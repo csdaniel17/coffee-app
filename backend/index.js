@@ -1,20 +1,21 @@
 var express = require('express');
 // var bcrypt = require('bcrypt');
-var bcrypt = require('bcrypt-as-promised');
+var bcrypt = require('my-bcrypt');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randtoken = require('rand-token');
 var cors = require('cors');
 var stripe = require('stripe')('sk_test_HpALrLgbTmPqF3zzGhmUJ3qB');
-var credentials = require('./credentials.json');
 
 // use bluebird for promises
 var Promise = require('bluebird');
 mongoose.Promise = Promise; // use bluebird with mongoose
+Promise.promisifyAll(bcrypt); // to support promise based style
 
 var app = express();
 
 // connect to the database
+var credentials = require('./credentials.json');
 mongoose.connect('mongodb://' + credentials.username + ':' + credentials.password + "@ds011903.mlab.com:11903/coffeeapp");
 
 // mongodb model for users
