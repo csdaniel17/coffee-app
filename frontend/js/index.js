@@ -29,6 +29,9 @@ app.config(function($routeProvider){
     .when('/thankyou', {
       controller: 'PaymentController',
       templateUrl: '/thankyou.html'
+    })
+    .otherwise({
+      redirectTo: '/'
     });
 });
 
