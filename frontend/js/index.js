@@ -35,7 +35,7 @@ app.config(function($routeProvider){
     });
 });
 
-var API = 'https://coffee-app-kiblphkboi.now.sh';
+var API = 'https://coffee-app-nzpdfatsnt.now.sh';
 
 // Ajax service calls - using promises
 app.factory('backEnd', function($http) {
